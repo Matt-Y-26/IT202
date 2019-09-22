@@ -1,7 +1,4 @@
-<?php
-#turn error reporting on
-ini_set('display_errors',1);;
-ini_set('display_startup_errors', 1);
+<?php #turn error reporting on ini_set('display_errors',1);; ini_set('display_startup_errors', 1); 
 error_reporting(E_ALL);
 
 require('config.php');
@@ -26,7 +23,7 @@ try{
 	$r = $stmt->execute();
 	echo "<br>" . ($r>0?"Created table or already exists":"Failed to create table") . "<br>";
 	
-	$insert_query = "INSERT INTO `TestUsers` ( `username`, `pin`) VALUES (`JohnDoe`, 1234)";
+	$insert_query = "INSERT INTO `TestUsers` ( `username`, `pin`) VALUES ('JohnDoe', 1234)";
 	$stmt = $db->prepare($insert_query);
 	$r = $stmt->execute();
 
