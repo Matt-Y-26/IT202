@@ -6,7 +6,13 @@
 	}
 	if(isset($_GET['word1'])){
 	if(isset($_GET['word2'])){
-	echo "<br>Hello, again concatenate is " . $_GET['word1'] . "" . $_GET['word2'] . "<br>";
+	$word1 = $_GET['word1'];
+	$word2 = $_GET['word2'];
+	$wordcon =$word1.''.$word2;
+
+	//echo "$wordcon \n";
+	echo "<br>Hello, the concatenate is ". $wordcon ;
+	//echo "<br>Hello, again concatenate is " . $_GET['word1'] . "" . $_GET['word2'] . "<br>";
 	}
 	}
 	
