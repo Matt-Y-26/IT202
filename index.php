@@ -23,6 +23,14 @@
 	myParagraph.innerText += (number1+number2);
 	console.log(myParagraph);
 	//let myPar2 = myParagraph;
+	
+	//new stuff
+	var newDiv = document.createElement("div");
+	var newContent = document.createTextNode("new element added");
+	newDiv.appendChild(newContent);
+
+	var currentDiv=document.getElementById("div1");
+	document.body.insertBefore(newDiv, currentDiv);
 
 	var para = document.createElement("p");
 	var add = document.createTextNode("added new element");
@@ -37,7 +45,7 @@
 <body onload="mySamples();">
 	<p id = "myPara"> Just showing that we loaded something...</p>
 	<div id = "div1">
-		
+	Answer above	
 	</div>
 </body>
 </html>
