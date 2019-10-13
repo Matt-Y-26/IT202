@@ -102,6 +102,7 @@ function getName(){
 		}
 		var username = form.username.value;
 		var uv = document.getElementById("validation.username");
+		uv.style.display = "none";
 		if(username == "")
 		{
 			uv.style.display = "block";
