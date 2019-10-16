@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+	function queryParam(){
+	var params = new URLSearchParams(location.search);
+	if(params.has('page')){
+		var page = params.get('page');
+		var ele = document.getElementById(page);
+		if(ele){
+			let home = document.getElementById('home');
+			let about = document.getElementById('about');
+			home.style.display="none";
+			about.style.display="none";
+			ele.style.display = "block";
+		}
+	}
+	else
+	{
+		let home = document.getElementById('home');
+		home.style.display = "block";
+	}
+	
+}
+</script>
+</head>
+<body onload ="queryParam();">
+	<header>
+		<nav>
+			<a href="home.html">Home</a>
+			<a href="about.html">About</a>
+			<!--Create route for Home-->
+			<!--Create route for about-->
+		</nav>
+	</header>
+	<div id="home">
+		<article>
+			This is my article
+			<sectionThis is section 1</section>
+	</div>
+	<div id="about">
+		<!-- Semantics or something -->
+		Click the about link to see the semantics page with everything in it
+	</div>
+	<footer></footer>
+</body>
+</html>

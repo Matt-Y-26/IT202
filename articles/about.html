@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+        function queryParam(){
+        var params = new URLSearchParams(location.search);
+        if(params.has('page')){
+                var page = params.get('page');
+                var ele = document.getElementById(page);
+                if(ele){
+                        let home = document.getElementById('home');
+                        let about = document.getElementById('about');
+                        home.style.display="none";
+                        about.style.display="none";
+                        ele.style.display = "block";
+                }
+        }
+        else
+        {
+                let home = document.getElementById('home');
+                home.style.display = "block";
+        }
+
+}
+</script>
+
+</head>
+	<body onload="queryParam();">
+	<header>
+	<nav>
+		<!--Create route for home and section the 2-->
+		<!-- <a href = "2.html">Section Page</a> -->
+		<a href = "home.html">Home</a>
+		<a href = "2.html">Section Page</a>
+	</nav>
+	</header>
+
+	<div id="about">
+		<section> 
+			<h1> Section 1 </h1>
+		</section>
+		
+		<article>
+		<h1> Article </h1>
+		<p> This is an article used in html5 </p>
+		</article>
+
+		<aside>
+		<h4> Asides can be cool too </h4>
+		</aside>
+
+		<details>
+		<summary> Something Copyright </summary>
+		<p> This is details </p>
+		</details>
+
+		<footer>
+		<h2> Footer header </h2>
+		<p> Bank of Money </p>
+		</footer>
+
+
+	</div>
+
+	</body>
+
+
+</html>
