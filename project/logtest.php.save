@@ -1,0 +1,54 @@
+<?php
+	
+	/*
+	if(isset($_POST['username'])){
+		echo "username is set";
+	}
+	else
+	{
+		echo "username isn't set";
+	}
+	*/
+	 $user = $_POST["username"];
+         $pass = $_POST['password'];
+	/*
+	echo $user;
+	echo "<br>";
+	if( $user == "")
+	{
+		echo "user not set";
+	}
+	*/
+	//just some tests above
+	//	if(isset($_POST['username']) || $user == ""){ isset doesnt work
+	if($user != ""){
+		//good
+		if( $pass != "")
+		{
+			//$user = $_POST['username'];
+			//$pass = $_POST['password'];
+			echo "Works";
+			echo "<br>";
+			echo '<a href="https://web.njit.edu/~my286/IT202/project/login.html">Click here to go back</a>';
+			//echo $user;
+			//echo $pass;
+			require(config.php);
+			$conn_string = "mysql fds fsd fsd fsd
+		}
+		else
+		{	
+			//password wasn't set
+			echo "No password given";
+			echo '<a href="https://web.njit.edu/~my286/IT202/project/login.html">Click here to go back</a>';
+		}
+	}
+	else
+	{
+		//no username was given
+		echo "No username given";
+                echo '<a href="https://web.njit.edu/~my286/IT202/project/login.html">Click here to go back</a>';
+
+	}
+	//$user = $_POST['username'];
+	//$pass = $_POST['password'];
+?>

@@ -1,0 +1,64 @@
+<?php
+	
+	 $user = $_POST["username"];
+         $pass = $_POST['password'];
+	
+	//just some tests above
+	//	if(isset($_POST['username']) || $user == ""){ isset doesnt work
+	if($user != ""){
+		//good
+		if( $pass != "")
+		{
+			
+			echo "Works";
+			echo "<br>";
+			echo '<a href="https://web.njit.edu/~my286/IT202/project/login.html">Click here to go back</a>';
+			
+			
+			require('config.php');
+			//echo"gets here before conn string";
+			$conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
+			try {
+				$db = new PDO($conn_string, $username, $password);
+			
+				
+				$select_query = "SELECT `Username` FROM `ProjUsr_Passwd` WHERE 1";
+				//echo $select_query;
+				$stmt = $db->prepare($select_query);
+				//$f = $select_query->fetch();
+				
+				//$r = $stmt->execute(array(":Username"=> "Test"));
+				//$results = $stmt-fetch(PDO::FETCH_ASSOC);
+				//echo "export " . var_export($results, true) . "";
+				//echo "<br>" . $r . "<br>";
+				$r = $stmt->execute();
+				$response = json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+				//$stmt->bind-result($def, $name);
+				$response1 = $stmt->fetchAll;
+				echo $response;
+				$responseuser=$response[1];
+				echo $response1;
+				
+				echo "gets here";
+			}
+			catch(Exception $e){
+				echo "ERROR: Failed to connect to database";
+			}
+		}
+		else
+		{	
+			//password wasn't set
+			echo "No password given";
+			echo '<a href="https://web.njit.edu/~my286/IT202/project/login.html">Click here to go back</a>';
+		}
+	}
+	else
+	{
+		//no username was given
+		echo "No username given";
+                echo '<a href="https://web.njit.edu/~my286/IT202/project/login.html">Click here to go back</a>';
+
+	}
+	//$user = $_POST['username'];
+	//$pass = $_POST['password'];
+?>
