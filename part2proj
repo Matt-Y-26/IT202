@@ -1,0 +1,41 @@
+//ok change the database
+//change it 60 (varchar) password change password to 60 and varchar
+//have a register php
+<?php
+
+//this will be broken
+add this to what you have
+
+//js validation
+function checkpassword(form){
+	return form.password.value == form.confirm.value;
+	//also check for other validation, ie things arent empty
+	if(!isOk) { alert("Passwords don't match
+
+}
+
+
+
+<form method "POST on submit="return checkPasswords(this); //this on submit will be a problem
+<input type="password" name"confirm"/>
+<input type="submit" value="Register"/>
+
+
+
+in php
+if password != confirm
+	echo passwords dont match
+	exit
+
+in the stmt->execute
+	//using b crypt because 60 char string
+
+	$hash= password_hash($pass, PASSWORD_BCRYPT);
+	
+	$stmt = $db -> prepare ("INSERT into `Users` (`username`, `password`) VALUES
+	
+
+	$result= $stmt->execute(
+	array( ":username"=>$user,
+		":password"=$hash
+	)
