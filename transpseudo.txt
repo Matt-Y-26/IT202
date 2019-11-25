@@ -1,0 +1,33 @@
+//PSEUDO
+<?php //TABLE IS account_source, account_dest, change, type, total]
+function transaction($a1, $a2, $change, $type){
+	$select_query = "SELECT SUM(change) from transactions where";
+	$select_query += " account_source = :account";
+	$db->prepare($select_query);
+	$stmt->execute(array(":account", $al));
+	$alTotal = $results["Totals"];
+	$alTotal += $change;
+
+	$db->prepare($select_query);
+	$stmt->execute(array":account",$a2));
+	a2total = $results["Total"]
+	a2total += ($change*-1);
+
+	$insert = "INSERT INTO Transactions (a1,a2,change,type,total)";
+	$insert += "VALUES(:p1a1: pla2: p1change, :p1type, :p1total), ";
+	$insert += "(:^ SAME AS ABOVE BUT REPLACE WITH 2 , p2a1, :p2a2, :p2change etc
+	
+	$db->perpare($insert);
+	$stmt->execute(array(
+			":p1a1"=>$a1,
+			":p1a2"=>$a2,
+			":p1change"=>$change,
+			":type"=>$type,
+			":p1total"=> a1total;
+			":p2a1"=>$a2,
+			"p2a2"=>$a1,
+			":p2change"=>($change*-1),
+			":p2total"=>$a2Total
+			)
+		);
+}
