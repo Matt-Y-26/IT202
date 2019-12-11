@@ -49,16 +49,20 @@ you have to pay an additional 5% of what was taken out </p>
 				echo "You now have " . $_SESSION["loanamt"] . " in loan debt/taken";
 				//update db
 		
-	$stmt = $db->prepare("UPDATE `ProjUsers` SET `loanmoney` =:loan, `loanamt`=:loanamt WHERE ID =:id");
+	$stmt = $db->prepare("UPDATE `ProjUsers` SET `loanmoney` =:loan WHERE ID =:id");
 		$result = $stmt->execute(
 		array(":loanmoney"=>$_SESSION['loanmoney'],
-			":loanamt"=>$_SESSION['loanamt'],
 			":id"=>$idnum
 			)
 		);
+		     $stmt = $db->prepare("UPDATE `ProjUsers` SET `loanamt`=:loanamt WHERE ID =:id");
+                $result = $stmt->execute(
+                array( ":loanamt"=>$_SESSION['loanamt'],
+                        ":id"=>$idnum
+                        )
+                );
 			
 		}
-		
 			else
 			{
 				echo "Please input an amount";
@@ -68,9 +72,7 @@ you have to pay an additional 5% of what was taken out </p>
 		else
 		{ //repay loan, require loanamt
 			//subtract loanamt from savings and update to database, set loanamt 0 and update db
-			
+					
 		}
 	}
-
-
 ?>
