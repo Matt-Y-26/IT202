@@ -29,6 +29,9 @@ you have to pay an additional 5% of what was taken out </p>
 </html>
 
 <?php
+	$owe=$_SESSION['loanamt'];
+	$owe=$owe+($owe *.05);
+	echo "You owe: " . $owe;
 	if(isset($_POST["button"]))
 	{
 		require("config.php");
@@ -49,7 +52,7 @@ you have to pay an additional 5% of what was taken out </p>
 				echo "You now have " . $_SESSION["loanamt"] . " in loan debt/taken";
 				//update db
 		
-	$stmt = $db->prepare("UPDATE `ProjUsers` SET `loanmoney` =:loan WHERE ID =:id");
+	$stmt = $db->prepare("UPDATE `ProjUsers` SET `loanmoney` =:loanmoney WHERE ID =:id");
 		$result = $stmt->execute(
 		array(":loanmoney"=>$_SESSION['loanmoney'],
 			":id"=>$idnum
@@ -72,7 +75,30 @@ you have to pay an additional 5% of what was taken out </p>
 		else
 		{ //repay loan, require loanamt
 			//subtract loanamt from savings and update to database, set loanamt 0 and update db
-					
+			
+			if($_SESSION['money']>$owe);
+			{
+				$_SESSION['money']-=$owe;
+				$owe=0;
+				$_SESSION['loanamt']=0;
+		$stmt = $db->prepare("UPDATE `ProjUsers` SET `loanamt`=:loanamt WHERE ID =:id");
+                $result = $stmt->execute(
+                array( ":loanamt"=>$_SESSION['loanamt'],
+                        ":id"=>$idnum
+                        )
+                );
+  		$stmt = $db->prepare("UPDATE `ProjUsers` SET `money`=:money WHERE ID =:id");
+                $result = $stmt->execute(
+                array( ":money"=>$_SESSION['money'],
+                        ":id"=>$idnum
+                        )
+                );
+			echo "You have successfully paid off your loans";				
+			}
+			else
+			{
+				echo "You don't have enough in your savings to pay the loan off";
+			}
 		}
 	}
 ?>
