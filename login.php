@@ -86,7 +86,21 @@ session_start();
                                                 $money = $results['money'];
                                                 $_SESSION['money']=$money;
 						
-						header("Location: landingpg.php");
+			$select_query = "SELECT `loanmoney` FROM `ProjUsers` WHERE username =:username";
+                                                $stmt = $db->prepare($select_query);
+                                                $r = $stmt->execute(array(":username"=>$user));
+                                                $results = $stmt->fetch(PDO::FETCH_ASSOC);
+                                                $loanmoney = $results['loanmoney'];
+                                                $_SESSION['loanmoney']=$loanmoney;
+						//header("Location: landingpg.php");
+			$select_query = "SELECT `loanamt` FROM `ProjUsers` WHERE username =:username";
+                                                $stmt = $db->prepare($select_query);
+                                                $r = $stmt->execute(array(":username"=>$user));
+                                                $results = $stmt->fetch(PDO::FETCH_ASSOC);
+                                                $loanamt = $results['loanamt'];
+                                                $_SESSION['loanamt']=$loanamt;
+                                                header("Location: landingpg.php");
+					
 					}
 					else
 					{

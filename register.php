@@ -25,6 +25,7 @@ function checkpassuser(form){
 </head>
 <div style="margin-left: 35%; margin-right:35%;">
 <p> Please register with a username and password and make sure to confirm the password </p>
+<a href="welcome.php">Back to welcome</a>
 <body>
 	<form method="POST" onsubmit="return checkpassuser(this);"/>
 		<input type="test" name="username" placeholder="Enter Username"/>
@@ -72,8 +73,10 @@ function checkpassuser(form){
 				)
 			);
 			print_r($stmt->errorInfo());
-
+			echo "Success";
 			echo var_export($result,true);
+       		   // header("Location: login.php");
+
 
 		}
 		catch(Exception $e)
