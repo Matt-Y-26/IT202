@@ -11,8 +11,7 @@ Hello, <?php echo $_SESSION['user'];?>
 <br></br>
 <a href="calc.php">Monthly interest calculator for savings</a>
 <br></br>
-<a href="give.php">Give money to another user</a>
-<br></br>
+<!-- <a href="give.php">Give money to another user</a> -->
 Your id is <?php echo $_SESSION['id'];?>
 <br></br>
 You have <?php echo $_SESSION['money'];?> dollars

@@ -62,8 +62,8 @@ enter current password and enter new password </p>
 	<input type="password" name="curpas" placeholder="Enter current password"/>
 	<input type="password" name="newpas" placeholder="Enter new password"/>
 	<br></br>
-	<input type="checkbox" id="mycheck">
-	Selecting this checkmark I confirm the information above is correct
+<!--	<input type="checkbox" id="mycheck"> -->
+<!--	Selecting this checkmark I confirm the information above is correct -->
 	<br></br>
 	Delete account?
 	<select name="option">
@@ -86,7 +86,7 @@ checkings account</p>
        $newpas= $_POST["newpas"];
 	$sesuser= $_SESSION['user'];
 	$opt = $_POST['option'];
-	echo "Hello?";
+	//echo "Hello?";
 	require('config.php');
 	$conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
 	
@@ -131,7 +131,8 @@ checkings account</p>
 			//above should of updated
 			//update the session name as well
 			$_SESSION['user']=$newuser;
-			echo "Success!";
+			echo "Success in accessing user";
+			echo "<br></br>";
 			
 		
 		}
@@ -139,7 +140,26 @@ checkings account</p>
 		{
 			//prepare to delete (Actually might just change all values to 0
 			//THEN redirect to homepage
-			
+			//echo "DELETE";
+			if($_SESSION['money']!=0)
+			{
+				echo "You still have money in your savings! Note that all checkings/loan 
+money will be deleted if you have any! Please either take out or move money in your savings";
+				
+			}
+			else
+			{
+				require("config.php");
+				$conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
+				$db = new PDO($conn_string, $username, $password);
+				$idnum=$_SESSION['id'];
+		$stmt = $db->prepare("DELETE FROM `ProjUsers` WHERE ID =:id");
+		$result = $stmt->execute(
+		array(":id"=>$idnum
+			)
+		);
+				header("Location: welcome.php");
+			}
 		}
 		
 	}

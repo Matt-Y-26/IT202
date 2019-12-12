@@ -52,7 +52,7 @@ session_start();
 	echo "You have " . $sav . " in savings";
 	echo " <br> ";
 	echo "You have " . $che . " in checkings <br>";	
-	
+	//echo $opt;
 	if($sav !=0)
 	{
 		
@@ -75,14 +75,19 @@ session_start();
 			require("config.php");
 			$conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
 			$db = new PDO($conn_string, $username, $password);
-			$stmt = $db->prepare("UPDATE `ProjUsers` SET `money` = :save,`loanmoney` = :che 
-WHERE ID = :id");
+		$stmt = $db->prepare("UPDATE `ProjUsers` SET `money` =:sav WHERE ID = :id");
 			$result = $stmt->execute(
-				array(":che"=>$che,
-					":sav"=>$sav,
+				array(":sav"=>$sav,
 					":id"=>$idnum
 				)
 			);
+	  $stmt = $db->prepare("UPDATE `ProjUsers` SET `loanmoney` =:che WHERE ID = :id");
+                        $result = $stmt->execute(
+                                array(":che"=>$che,
+                                        ":id"=>$idnum
+                                )
+                        );
+
 			echo "SUCCESS";
 			echo "<br> Checkings is now " . $che . " and savings is now " . $sav . "";;
 			//$idnum=$_SESSION['id'];
@@ -97,13 +102,44 @@ WHERE ID = :id");
 //			);
 			}
 		}
-		else if(opt=="tosaving")
+		else if($opt=="tosaving")
 		{
+			if($amt>$che)
+                        {
+                                echo "Not enough money in checkings!";
+                        }
+                        else
+                        {
+                        //echo"hello";
+                        $che-=$amt;
+                        $sav+=$amt;
+                        $_SESSION['loanmoney']=$che;
+                        $_SESSION['money']=$sav;
+                        $idnum=$_SESSION['id'];
+                        require("config.php");
+                        $conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
+                        $db = new PDO($conn_string, $username, $password);
+                $stmt = $db->prepare("UPDATE `ProjUsers` SET `money` =:sav WHERE ID = :id");
+                        $result = $stmt->execute(
+                                array(":sav"=>$sav,
+                                        ":id"=>$idnum
+                                )
+                        );
+			 $stmt = $db->prepare("UPDATE `ProjUsers` SET `loanmoney` =:che WHERE ID = :id");
+                        $result = $stmt->execute(
+                                array(":che"=>$che,
+                                        ":id"=>$idnum
+                                )
+                        );
+
+                        echo "SUCCESS";
+                        echo "<br> Checkings is now " . $che . " and savings is now " . $sav . "";
+		}
 
 		}
 		else
 		{
-			//
+			echo "Error";
 		}
 	
 	}

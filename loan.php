@@ -76,7 +76,7 @@ you have to pay an additional 5% of what was taken out </p>
 		{ //repay loan, require loanamt
 			//subtract loanamt from savings and update to database, set loanamt 0 and update db
 			
-			if($_SESSION['money']>$owe);
+			if($_SESSION['money']>$owe)
 			{
 				$_SESSION['money']-=$owe;
 				$owe=0;

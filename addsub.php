@@ -89,6 +89,10 @@ function checkempty(form){
 				return 0;
 			}
 			$curmon=$curmon-$amt;
+			if($curmon<0)
+			{ //if underflow set to 0
+				$curmon=0;
+			}
 			//take out amt
 		}
 		
